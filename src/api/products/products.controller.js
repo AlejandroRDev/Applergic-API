@@ -54,13 +54,13 @@ const patchProduct = async (req, res, next) => {
     const patchProduct = new Product(req.body);
     patchProduct._id = id;
     if (req.file) {
-        patchProduct.img = req.file.path;
+        patchProduct.image = req.file.path;
     }
     const productDb = await Product.findByIdAndUpdate(id, patchProduct);
     if (!productDb) {
       return next(setError(404, "Product not found"));
     }
-    if (productDb.img) deleteFile(productDb.img);
+    if (productDb.image) deleteFile(productDb.image);
     return res.status(200).json({ new: patchProduct, old: productDb });
   } catch (error) {
     return next(500, "Product patch server error");
@@ -73,7 +73,7 @@ const deleteProduct = async (req, res, next) => {
     if (!productDb) {
       return next(setError(500, "Product not found"));
     }
-    if (productDb.img) deleteFile(productDb.img);
+    if (productDb.image) deleteFile(productDb.image);
     return res.status(200).json(productDb);
   } catch (error) {
     return next(setError(500, "Product remove server error"));
