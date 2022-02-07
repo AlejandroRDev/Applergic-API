@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 const { validationPassword } = require('../../utils/validators/validations')
 const { setError } = require('../../utils/error/error')
 
-const userSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     image: {type: String, trim: true, required: true},
     name: { type: String, trim: true, required: true },
     email: { type: String, trim: true, required: true, unique: true },
@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     allergies: [{type: String, trim: true}]
 }, { timestamps: true })
 
-userSchema.pre("save", function (next) {
+UserSchema.pre("save", function (next) {
     if (!validationPassword(this.password)) {
         return next(setError(400, 'La contraseña no tiene los minimos requeridos'))
     }
@@ -21,5 +21,5 @@ userSchema.pre("save", function (next) {
     next();
 });
 
-const User = mongoose.model('users', userSchema)
+const User = mongoose.model('users', UserSchema)
 module.exports = User
