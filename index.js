@@ -6,6 +6,7 @@ const cloudinary = require('cloudinary').v2
 // Requerimos las rutas
 const UserRoutes = require('./src/api/user/user.routes')
 const ProductsRoutes = require('./src/api/products/products.routes')
+const AllergensRoutes = require('./src/api/allergens/allergens.routes')
 
 
 // Requerimos el controlador de errores
@@ -46,6 +47,7 @@ app.use(express.urlencoded({ limit: '5mb', extended: true }))
 
 app.use('/api/users', UserRoutes)
 app.use('/api/products', ProductsRoutes)
+app.use('/api/allergens', AllergensRoutes)
 app.use('/', (req, res, next) => {
     return res.json('APPLERGIC SERVER')
 })
