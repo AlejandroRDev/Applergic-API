@@ -29,16 +29,17 @@ const postNewProduct = async (req, res, next) => {
 
 const getAllProducts = async (req, res, next) => {
   try {
-    const productDb = await Product.find();
+    const productDb = await Product.find().populate('allergens');
     res.status(200).json(productDb);
   } catch (error) {
     return next(setError(500, "Product failed server"));
   }
 };
+
 const getProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const productDb = await Product.findById(id);
+    const productDb = await Product.findById(id).populate('allergens');
     if (!productDb) {
       return next(setError(404, "Product not found"));
     }
