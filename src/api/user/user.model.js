@@ -4,7 +4,7 @@ const { validationPassword } = require('../../utils/validators/validations')
 const { setError } = require('../../utils/error/error')
 
 const UserSchema = new mongoose.Schema({
-    image: {type: String, trim: true, required: true},
+    image: {type: String, trim: true},
     name: { type: String, trim: true, required: true },
     email: { type: String, trim: true, required: true, unique: true },
     password: { type: String, trim: true, required: true },
