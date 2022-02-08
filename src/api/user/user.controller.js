@@ -6,6 +6,9 @@ const { generateSign, verifyJwt } = require('../../utils/jwt/jwtUtils')
 const postNewUser = async (req, res, next) => {
     try {
         const newUser = new User(req.body)
+        if (req.file) {
+            newUser.image = req.file.path;
+        }
         const userDuplicate = await User.findOne({ email: newUser.email })
         if (userDuplicate) {
             return next(setError(404, 'Email existente'))
