@@ -24,12 +24,14 @@ const postNewUser = async (req, res, next) => {
 const loginUser = async (req, res, next) => {
     try {
         const userDB = await User.findOne({ email: req.body.email })
+        console.log(userDB)
         if (!userDB) {
             return next(setError(404, 'User not found'))
         }
         if (bcrypt.compareSync(req.body.password, userDB.password)) {
             const token = generateSign(userDB._id, userDB.email)
-            return res.status(200).json(token)
+            const user = userDB.email
+            return res.status(200).json({token, user})
         }
     } catch (error) {
         error.message = 'error Login'

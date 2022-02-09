@@ -3,7 +3,7 @@ const validationEmail = (email) => {
     return re.test(String(email).toLowerCase());
 };
 const validationPassword = (password) => {
-    const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$/;
+    const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,24}$/;
     return re.test(String(password));
 };
 module.exports = {
