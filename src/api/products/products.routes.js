@@ -6,7 +6,7 @@ const upload = require('../../middlewares/file')
 //Definimos las rutas
 const { postNewProduct, getAllProducts, getProduct, patchProduct, deleteProduct } = require('./products.controller')
 ProductsRoutes.get('/', getAllProducts)
-ProductsRoutes.get('/:id', getProduct)
+ProductsRoutes.get('/:barcode', getProduct)
 ProductsRoutes.post('/', upload.single('image'), postNewProduct)
 ProductsRoutes.patch('/:id', upload.single('image'), patchProduct)
 ProductsRoutes.delete('/:id', upload.single('image'), deleteProduct)
