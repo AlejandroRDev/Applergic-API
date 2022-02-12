@@ -38,9 +38,9 @@ const getAllProducts = async (req, res, next) => {
 
 const getProduct = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const productDb = await Product.findById(id).populate('allergens');
-    if (!productDb) {
+    const { barcode } = req.params;
+    const productDb = await Product.findOne({barcode: barcode}).populate('allergens');
+    if (!productDb) { 
       return next(setError(404, "Product not found"));
     }
     return res.status(200).json(productDb);
