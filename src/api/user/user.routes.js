@@ -6,6 +6,6 @@ const upload = require('../../middlewares/file')
 UserRoutes.post('/', upload.single('image'), postNewUser)
 UserRoutes.post('/login', loginUser)
 UserRoutes.post('/logout', [isAuth], logoutUser)
-UserRoutes.get('/:id', [isAuth], getUser)
+UserRoutes.get('/:id',[isAuth], getUser)
 
 module.exports = UserRoutes
