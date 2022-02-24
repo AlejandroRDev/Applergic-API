@@ -9,11 +9,11 @@ const UserSchema = new mongoose.Schema({
     email: { type: String, trim: true, required: true, unique: true },
     password: { type: String, trim: true, required: true },
     phone: {type: Number, trim: true, required: true},
-    nameContact: { type: String, trim: true},
-    emailContact: { type: String, trim: true, required: true, unique: true },
-    emergencyContact: { type: Number, trim: true},
-    SecureCompany: { type: String, trim: true},
-    allergies: [{type: String, trim: true}]
+    nameContact: { type: String, sparse:true},
+    emailContact: { type: String, sparse:true},
+    emergencyContact: { type: Number, sparse:true},
+    SecureCompany: { type: String, sparse:true},
+    allergies: [{type: String, trim: true, sparse:true}]
 }, { timestamps: true })
 
 UserSchema.pre("save", function (next) {
