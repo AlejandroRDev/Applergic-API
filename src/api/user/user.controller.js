@@ -68,9 +68,23 @@ const getUser = async (req, res, next) => {
   }
 };
 
+const getAllUser = async (req, res, next) => {
+    try {
+        const userDB = await User.find()
+        const emails = userDB.map((user) => {
+            console.log(user.email)
+            return user.email
+        })
+        return res.status(200).json(emails)
+    } catch (error) {
+        return next(setError(404, 'User server fail'))
+    }
+}
+
 module.exports = {
   postNewUser,
   loginUser,
   logoutUser,
   getUser,
+  getAllUser
 };
